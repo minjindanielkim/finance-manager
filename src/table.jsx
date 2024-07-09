@@ -1,42 +1,43 @@
-import React, {useState} from 'react';
-import jsonData from './tempData.json'
-import StockForm from './form';
+//table.jsx
 
-function TableData() {
-    const [stockData, setStockData] = useState(jsonData);
-    const tableRows = stockData.map((info) => {
-        return (
-            <tr>
-                <td>{info.id}</td>
-                <td>{info.name}</td>
-                <td>{info.price}</td>
-            </tr>
-        );
-    });
+import React, { useState } from 'react';
 
-    const addRows = (data) => {
-        const totalStock = stockData.length;
-        data.id = totalStock + 1;
-        const updatedStockData = [...stockData];
-        updatedStockData.push(data);
-        setStockData(updatedStockData);
-    };
+function StudentForm(props) {
+	const [name, setName] = useState('');
+	const [price, setPrice] = useState('');
 
-    return (
-        <div>
-            <table className="table table-stripped">
-                <thread>
-                    <tr>
-                        <th>Stock # </th>
-                        <th>Name</th>
-                        <th>price</th>
-                    </tr>
-                </thread>
-                <tbody>{tableRows}</tbody>
-            </table>
-            <StockForm func={addRows} />
-        </div>
-    );
+	const changeName = (event) => {
+		setName(event.target.value);
+	};
+
+	const changePrice = (event) => {
+		setPrice(event.target.value);
+	};
+
+	const transferValue = (event) => {
+		event.preventDefault();
+		const val = {
+			name,
+			price,
+		};
+		props.func(val);
+		clearState();
+	};
+
+	const clearState = () => {
+		setName('');
+		setPrice('');
+	};
+
+	return (
+		<div>
+			<label>Name</label>
+			<input type="text" value={name} onChange={changeName} />
+			<label>Price</label>
+			<input type="text" value={city} onChange={changePrice} />
+			<button onClick={transferValue}> Add </button>
+		</div>
+	);
 }
 
-export default TableData; 
+export default StudentForm;

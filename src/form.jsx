@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 
-function StockForm(props) {
+const downloadFile = ({data, fileName, fileType}) => {
+    const blob = new Blob([data], {type: fileType})
+    const a = document.createElement('a')
+    a.download = fileName
+    a.href = window.URL.createObjectURL(blob)
+    const clickEvent = new MouseEvent('click', {
+        view: window, 
+        bubbles: true,
+        cancelable: true,
+    });
+    a.dispatchEvent(clickEvent);
+    a.remove();
+}
+
+function StockForm() {
     const [inputFields, setInputFields] = useState([
         {name: '', price: ''}
     ])
+    const [totalPrice, setTotalPrice] = useState(0)
 
     const handleChange = (index, event) => {
         let data = [...inputFields];
@@ -18,29 +33,50 @@ function StockForm(props) {
 
     const submitData = (e) => {
         e.preventDefault();
-        // console.log(inputFields[0].price)
         totalSpent();
     }
 
-    function totalSpent() {
-        console.log(inputFields)
+    const totalSpent = () => {
+        let data = [...inputFields]
+        let tempTotal = [totalPrice]
+        console.log(tempTotal)
         let res = 0
-        for(let i = 0; i < inputFields.length; i++) {
-            res = res + parseInt(inputFields[i].price)
-            console.log(res)
+        for(let i = 0; i < data.length; i++) {
+            res = res + parseInt(data[i].price)
         }
-        return res;
+        console.log(res)
+        setTotalPrice(res)
     }
 
     const removeField = (index) => {
         let data = [...inputFields];
         data.splice(index, 1)
         setInputFields(data);
-        console.log(inputFields)
+    }
+
+    const downloadCSV = () => {
+        let data = [...inputFields]
+        let headers = ['Name, Price']
+        let userCSV = data.reduce((acc, user) => {
+            const {name, price} = user
+            acc.push([name, price].join(','))
+            return acc
+        }, []);
+        downloadFile({
+            data: [...headers, ...userCSV].join('\n'), 
+            fileName: 'price.csv', 
+            fileType: 'text/csv',
+        });
     }
 
     return (
         <div className='userForm'>
+            <div 
+                style={{cursor: 'pointer', textDecoration: 'underline'}}
+                onClick={downloadCSV}
+            >
+                Download
+            </div>
             <form onSubmit={submitData}>
                 {
                     inputFields.map((input, index) => {
@@ -67,7 +103,7 @@ function StockForm(props) {
                 <button onClick={submitData}>Submit Data</button>
             </form>
             <div>
-                Total Amount Spent: {totalSpent}
+                Total Price = {totalPrice ? totalPrice : 'press submit to tally values'}
             </div>
         </div>
     );
