@@ -71,6 +71,7 @@ function StockForm() {
 
     return (
         <div className='userForm'>
+            <h1>Finance Tracker</h1>
             <div 
                 style={{cursor: 'pointer', textDecoration: 'underline'}}
                 onClick={downloadCSV}
