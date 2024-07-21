@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PersistState from './usePersistState.ts';
 
 const downloadFile = ({data, fileName, fileType}) => {
     const blob = new Blob([data], {type: fileType})
@@ -15,7 +16,7 @@ const downloadFile = ({data, fileName, fileType}) => {
 }
 
 function StockForm() {
-    const [inputFields, setInputFields] = useState([
+    const [inputFields, setInputFields] = PersistState([
         {name: '', price: ''}
     ])
     const [totalPrice, setTotalPrice] = useState(0)

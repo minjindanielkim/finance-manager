@@ -7,9 +7,6 @@ const Layout = () => {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/compare">Compare CSV </Link>
-          </li>
       </nav>
 
       <Outlet />

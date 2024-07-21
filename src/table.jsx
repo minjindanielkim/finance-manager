@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-function StudentForm(props) {
+function PriceTable(props) {
 	const [name, setName] = useState('');
 	const [price, setPrice] = useState('');
 
@@ -40,4 +40,4 @@ function StudentForm(props) {
 	);
 }
 
-export default StudentForm;
+export default PriceTable;
