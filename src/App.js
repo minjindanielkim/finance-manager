@@ -1,7 +1,7 @@
 import StockForm from "./form";
 import './App.css'; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./layout";
+// import Layout from "./layout";
 import Home from "./home";
 import Login from "./login";
 import { useState } from "react";
@@ -29,6 +29,11 @@ function App() {
                         path="/login"
                         element={<Login setLoggedIn={setLoggedIn} setEmail={setEmail} />}
                     />
+                    <Route  
+                        path="/forms"
+                        element={<StockForm />}
+                     />
+
 
                 </Routes>
             </BrowserRouter>

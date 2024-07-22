@@ -10,7 +10,26 @@ const Login = (props) => {
   const navigate = useNavigate()
 
   const onButtonClick = () => {
-    // You'll update this function later...
+    setEmailError('') // initialize the error message as empty
+    setPasswordError('')
+    if ('' === email) {
+      setEmailError("Enter an email address")
+      return
+    }
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+      setEmailError('Please enter a valid email')
+      return
+    }
+
+    if ('' === password) {
+      setPasswordError("Enter a valid password")
+      return
+    }
+    if (password.length < 7) {
+      setPasswordError("Password must be 8 Characters or longer")
+      return
+    }
   }
 
   return (
