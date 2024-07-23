@@ -1,10 +1,11 @@
 # next steps
 
-work on authentication for the login page
-https://clerk.com/blog/building-a-react-login-page-template 
---> use this website as a reference 
---> literally everything below the CSS
+- more coding
+see if i can make a small graph that shows how much the user is spending on certain products 
+when submit data is pressed let the submit data display the values as a dynamic graph using google charts
 
------------------------------------------------------------------------------------------------------------
 
--> figure out a way to make the login page the default screen before the forms page
+ - UI/UX STUFF
+
+make a small icon at the right corner where users can easily sign in / sign out of the site
+make the pages look niceer

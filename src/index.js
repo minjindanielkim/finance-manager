@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ClerkProvider } from '@clerk/clerk-react';
+
+const publicKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <ClerkProvider publishableKey={publicKey}>
     <App />
-  </React.StrictMode>
+  </ClerkProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

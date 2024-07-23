@@ -39,6 +39,7 @@ function StockForm() {
 
     const totalSpent = () => {
         let data = [...inputFields]
+        console.log(data)
         let tempTotal = [totalPrice]
         console.log(tempTotal)
         let res = 0
