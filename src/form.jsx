@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PersistState from './usePersistState.ts';
+import './form.css';
+import { SignedIn, SignOutButton, useUser } from '@clerk/clerk-react';
 
 const downloadFile = ({data, fileName, fileType}) => {
     const blob = new Blob([data], {type: fileType})
@@ -16,6 +18,7 @@ const downloadFile = ({data, fileName, fileType}) => {
 }
 
 function StockForm() {
+    const { user } = useUser();
     const [inputFields, setInputFields] = PersistState([
         {name: '', price: ''}
     ])
@@ -73,12 +76,29 @@ function StockForm() {
 
     return (
         <div className='userForm'>
-            <h1>Finance Tracker</h1>
+            <h1>Finance Manager</h1>
+            <div className='signoutbutton'>
+                <div>
+                    {user ? 
+                    <>
+                        <div className='sub'>
+                            Signed in with {user.primaryEmailAddress.emailAddress}
+                        </div>    
+                    </> : null}
+                </div>
+                <div className='sub'>
+                    <SignedIn>
+                        <SignOutButton>
+                            <input className={'inputButton'} type="button" value={'Log out'} />
+                        </SignOutButton>
+                    </SignedIn>
+                </div>
+            </div>
             <div 
                 style={{cursor: 'pointer', textDecoration: 'underline'}}
                 onClick={downloadCSV}
             >
-                Download
+                Download as CSV
             </div>
             <form onSubmit={submitData}>
                 {

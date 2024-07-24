@@ -1,0 +1,11 @@
+.signoutbutton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 25px;
+}
+
+.sub {
+    display: inline-block;
+    vertical-align: middle;
+}
