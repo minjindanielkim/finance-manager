@@ -18,12 +18,25 @@ const downloadFile = ({data, fileName, fileType}) => {
     a.remove();
 }
 
+const options = {
+    title: "Amount Spent per item",
+    chartArea: {width: "50%"},
+    hAxis: {
+        title: "Items",
+        minValue: 0,
+    },
+    vAxis: {
+        title: "Price"
+    },
+}; 
+
 function StockForm() {
     const { user } = useUser();
     const [inputFields, setInputFields] = PersistState([
-        {name: '', price: ''}
+        [{name: '', price: ''}]
     ])
     const [totalPrice, setTotalPrice] = useState(0)
+    const [graphinput, setGraphinput] = useState([])
 
     const handleChange = (index, event) => {
         let data = [...inputFields];
@@ -32,7 +45,7 @@ function StockForm() {
     }
 
     const addField = () => {
-        let newField = {name : '', price : ''}
+        let newField = {name : '', price : 0}
         setInputFields([...inputFields, newField])
     }
 
@@ -41,17 +54,28 @@ function StockForm() {
         totalSpent();
     }
 
+    const setDataForGraph = (data) => {
+        console.log(data)
+        let temp = [...graphinput]
+        console.log(temp)
+        let graphData = []
+        for(let i = 0; i < data.length; i++) {
+            graphData.push([data[i].name, parseInt(data[i].price)])
+        }
+        graphData.unshift(['name', 'price'])
+        console.log(graphData)
+        return graphData;
+    }
+
     const totalSpent = () => {
         let data = [...inputFields]
-        console.log(data)
-        let tempTotal = [totalPrice]
-        console.log(tempTotal)
+        let temp = setDataForGraph(data)
         let res = 0
         for(let i = 0; i < data.length; i++) {
-            res = res + parseInt(data[i].price)
-        }
-        console.log(res)
+            res = res + parseFloat(data[i].price)
+        }       
         setTotalPrice(res)
+        setGraphinput(temp)
     }
 
     const removeField = (index) => {
@@ -125,10 +149,17 @@ function StockForm() {
                 }
                 <button onClick={addField}>Add More</button>
                 <button onClick={submitData}>Submit Data</button>
-            </form>
-            <div>
+                <div>
                 Total Price = {totalPrice ? totalPrice : 'press submit to tally values'}
-            </div>
+                </div>
+                <Chart
+                 chartType="PieChart"
+                 data={graphinput}
+                 options={options}
+                 width={"100%"}
+                 height={"400px"}
+                />
+            </form>
         </div> 
     );
 }
