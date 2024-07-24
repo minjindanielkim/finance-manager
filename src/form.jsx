@@ -45,7 +45,7 @@ function StockForm() {
     }
 
     const addField = () => {
-        let newField = {name : '', price : 0}
+        let newField = {name : '', price : ''}
         setInputFields([...inputFields, newField])
     }
 
@@ -150,8 +150,9 @@ function StockForm() {
                 <button onClick={addField}>Add More</button>
                 <button onClick={submitData}>Submit Data</button>
                 <div>
-                Total Price = {totalPrice ? totalPrice : 'press submit to tally values'}
-                </div>
+                {totalPrice ? 
+                <>
+                <div>Total Price: {totalPrice}</div>
                 <Chart
                  chartType="PieChart"
                  data={graphinput}
@@ -159,6 +160,10 @@ function StockForm() {
                  width={"100%"}
                  height={"400px"}
                 />
+                </>
+                : 
+                'press submit to display values'}
+                </div>
             </form>
         </div> 
     );
