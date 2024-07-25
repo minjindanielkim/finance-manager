@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PersistState from './usePersistState.ts';
 import './form.css';
 import { SignedIn, SignOutButton, useUser } from '@clerk/clerk-react';
-import { Chart } from 'react-google-charts'
+import { Chart } from 'react-google-charts';
 
 const downloadFile = ({data, fileName, fileType}) => {
     const blob = new Blob([data], {type: fileType})
@@ -150,7 +150,7 @@ function StockForm() {
                 <button onClick={addField}>Add More</button>
                 <button onClick={submitData}>Submit Data</button>
                 <div>
-                {totalPrice ? 
+                {totalPrice && inputFields ? 
                 <>
                 <div>Total Price: {totalPrice}</div>
                 <Chart
