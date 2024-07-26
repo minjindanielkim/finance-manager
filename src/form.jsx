@@ -101,7 +101,7 @@ function StockForm() {
 
     return (
         <div className='userForm'>
-            <h1>Finance Manager</h1>
+            <h1>Personal Finance Manager</h1>
             <div className='signoutbutton'>
                 <div>
                     {user ? 

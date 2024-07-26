@@ -14,7 +14,9 @@ const Home = (props) => {
 
   return (
     <>
-    <div className='homepage'>
+    <div className='homepage' style={{
+      backgroundColor: 'yellowgreen',
+    }}>
       <div className="mainContainer">
         <div className={'titleContainer'}>
           <div>Organize Your Purchases</div>
