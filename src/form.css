@@ -9,3 +9,15 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.csvDownload {
+    margin-bottom: 5px;
+}
+
+.addMoreButton {
+    margin-right: 3px;
+}
+
+.helppage {
+    margin-bottom: 5px;
+}

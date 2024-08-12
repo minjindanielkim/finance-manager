@@ -2,6 +2,7 @@ import StockForm from "./form";
 import './App.css'; 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./home";
+import HelpPage from "./help";
 
 function App() {
     return (
@@ -15,6 +16,11 @@ function App() {
                     <Route  
                         path="/forms"
                         element={<StockForm />}
+                     />
+
+                     <Route 
+                        path="/help"
+                        element={<HelpPage />}
                      />
 
 

@@ -3,6 +3,7 @@ import PersistState from './usePersistState.ts';
 import './form.css';
 import { SignedIn, SignOutButton, useUser } from '@clerk/clerk-react';
 import { Chart } from 'react-google-charts';
+import { Link } from 'react-router-dom';
 
 const downloadFile = ({data, fileName, fileType}) => {
     const blob = new Blob([data], {type: fileType})
@@ -119,9 +120,14 @@ function StockForm() {
                     </SignedIn>
                 </div>
             </div>
+            <div className='helppage'>
+                Don't know how to get started? <br />
+                Click <Link to='/help'>here</Link> to go to the help page!
+            </div>
             <div 
                 style={{cursor: 'pointer', textDecoration: 'underline'}}
                 onClick={downloadCSV}
+                className='csvDownload'
             >
                 Download as CSV
             </div>
@@ -147,7 +153,7 @@ function StockForm() {
                         )
                     })
                 }
-                <button onClick={addField}>Add More</button>
+                <button onClick={addField} className='addMoreButton'>Add More</button>
                 <button onClick={submitData}>Submit Data</button>
                 <div>
                 {totalPrice && inputFields ? 
