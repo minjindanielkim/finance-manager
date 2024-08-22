@@ -36,8 +36,9 @@ function StockForm() {
     const [inputFields, setInputFields] = PersistState([
         [{name: '', price: ''}]
     ])
-    const [totalPrice, setTotalPrice] = useState(0)
-    const [graphinput, setGraphinput] = useState([])
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [graphinput, setGraphinput] = useState([]);
+    const [budget, setBudget] = useState(0);
 
     const handleChange = (index, event) => {
         let data = [...inputFields];
@@ -71,10 +72,12 @@ function StockForm() {
     const totalSpent = () => {
         let data = [...inputFields]
         let temp = setDataForGraph(data)
-        let res = 0
+	let res = 0
         for(let i = 0; i < data.length; i++) {
             res = res + parseFloat(data[i].price)
-        }       
+        }
+	let curBudget = budget;
+	setBudget(budget => budget - res);
         setTotalPrice(res)
         setGraphinput(temp)
     }
@@ -131,6 +134,8 @@ function StockForm() {
             >
                 Download as CSV
             </div>
+	    <label> Input a Target Budget: <input value = {budget} onChange={e => setBudget(e.target.value)}/>
+	    </label>
             <form onSubmit={submitData}>
                 {
                     inputFields.map((input, index) => {
@@ -159,6 +164,7 @@ function StockForm() {
                 {totalPrice && inputFields ? 
                 <>
                 <div>Total Price: {totalPrice}</div>
+		<div>Remaining Budget Left: {budget} </div>
                 <Chart
                  chartType="PieChart"
                  data={graphinput}
