@@ -76,7 +76,6 @@ function StockForm() {
         for(let i = 0; i < data.length; i++) {
             res = res + parseFloat(data[i].price)
         }
-	let curBudget = budget;
 	setBudget(budget => budget - res);
         setTotalPrice(res)
         setGraphinput(temp)
@@ -134,9 +133,9 @@ function StockForm() {
             >
                 Download as CSV
             </div>
-	    <label> Input a Target Budget: <input value = {budget} onChange={e => setBudget(e.target.value)}/>
+	    <label className="budgetInput"> Input a Target Budget: <input value = {budget} onChange={e => setBudget(e.target.value)}/>
 	    </label>
-            <form onSubmit={submitData}>
+            <form onSubmit={submitData} className="formSubmit">
                 {
                     inputFields.map((input, index) => {
                         return (

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@clerk/clerk-react": "^5.2.8",
+    "@clerk/clerk-react": "^5.7.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.4",
@@ -47,6 +47,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.25.1"
+    "react-router-dom": "^6.26.1"
   }
 }
