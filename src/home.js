@@ -2,6 +2,7 @@ import React from 'react'
 import { SignedOut, SignInButton, useUser } from '@clerk/clerk-react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
+import { Analytics } from "@vercel/analytics/react"
 
 const Home = (props) => {
 
@@ -38,6 +39,7 @@ const Home = (props) => {
         : null}
       </div>
     </div>
+    < Analytics /> 
     </>
   )
 }
