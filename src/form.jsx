@@ -32,6 +32,7 @@ const options = {
 }; 
 
 function StockForm() {
+    let remainingBudget = 0; 
     const { user } = useUser();
     const [inputFields, setInputFields] = PersistState([
         [{name: '', price: ''}]
@@ -39,6 +40,7 @@ function StockForm() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [graphinput, setGraphinput] = useState([]);
     const [budget, setBudget] = useState(0);
+    const [remaining, setRemaining] = useState(0);
 
     const handleChange = (index, event) => {
         let data = [...inputFields];
@@ -59,24 +61,22 @@ function StockForm() {
     const setDataForGraph = (data) => {
         console.log(data)
         let temp = [...graphinput]
-        console.log(temp)
         let graphData = []
         for(let i = 0; i < data.length; i++) {
             graphData.push([data[i].name, parseInt(data[i].price)])
         }
         graphData.unshift(['name', 'price'])
-        console.log(graphData)
         return graphData;
     }
 
     const totalSpent = () => {
         let data = [...inputFields]
         let temp = setDataForGraph(data)
-	let res = 0
+        let res = 0
         for(let i = 0; i < data.length; i++) {
             res = res + parseFloat(data[i].price)
         }
-	setBudget(budget => budget - res);
+        setRemaining(remaining => budget-res) 
         setTotalPrice(res)
         setGraphinput(temp)
     }
@@ -163,7 +163,7 @@ function StockForm() {
                 {totalPrice && inputFields ? 
                 <>
                 <div>Total Price: {totalPrice}</div>
-		<div>Remaining Budget Left: {budget} </div>
+                <div>Remaining Budget Left: {remaining} </div>
                 <Chart
                  chartType="PieChart"
                  data={graphinput}

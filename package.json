@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@clerk/clerk-react": "^5.7.0",
+    "@clerk/clerk-react": "^5.16.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.4",
@@ -17,7 +17,7 @@
     "react-csv": "^2.2.2",
     "react-csv-reader": "^4.0.0",
     "react-dom": "^18.3.1",
-    "react-google-charts": "^4.0.1",
+    "react-google-charts": "^4.0.7",
     "react-make-csv": "^0.0.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
@@ -47,6 +47,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.26.1"
+    "react-router-dom": "^6.28.0"
   }
 }
