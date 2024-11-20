@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSessionStorage } from 'usehooks-ts';
 import PersistState from './usePersistState.ts';
 import './form.css';
 import { SignedIn, SignOutButton, useUser } from '@clerk/clerk-react';
@@ -32,14 +33,15 @@ const options = {
 }; 
 
 function StockForm() {
-    let remainingBudget = 0; 
     const { user } = useUser();
     const [inputFields, setInputFields] = PersistState([
         [{name: '', price: ''}]
     ])
     const [totalPrice, setTotalPrice] = useState(0);
     const [graphinput, setGraphinput] = useState([]);
-    const [budget, setBudget] = useState(0);
+    // const [budget, setBudget] = useState(0); 
+    const [budget, setBudget] = useSessionStorage('budget', 0);
+
     const [remaining, setRemaining] = useState(0);
 
     const handleChange = (index, event) => {
@@ -60,7 +62,6 @@ function StockForm() {
 
     const setDataForGraph = (data) => {
         console.log(data)
-        let temp = [...graphinput]
         let graphData = []
         for(let i = 0; i < data.length; i++) {
             graphData.push([data[i].name, parseInt(data[i].price)])
